@@ -12,7 +12,7 @@ import feedparser
 import tweepy
 import math
 from urllib.request import urlopen, HTTPError
-from io import StringIO
+from io import BytesIO
 
 
 # Parameters
@@ -64,7 +64,7 @@ def tweet(twitter_api, twitter_verified, location, timestamp):
             try:
                 # Update status with image
                 image = urlopen(IMAGE_URL)
-                f = StringIO(image.read())
+                f = BytesIO(image.read())
                 image.close()
                 twitter_api.update_with_media(filename='pic.jpg', status=status, file=f)
                 f.close()
